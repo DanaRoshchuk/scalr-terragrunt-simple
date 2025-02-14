@@ -1,3 +1,38 @@
+
+terraform {
+    required_providers {
+        scalr = {
+            source = "registry.scalr.io/scalr/scalr"
+            version= "2.1.1"
+        }
+    }
+}
+data "scalr_current_account" "data_acc" {}
+
+data "scalr_environment" "data_env" {
+#account_id = data.scalr_current_account.data_acc
+  id = "env-v0on0fdgvjdf8ljta"  # optional, can only use id or name for the environment filter, if both are used there will be a conflict.
+}
+
+
+resource "scalr_variable" "new_varAll" {
+  count = 1
+  key            = "varall" #-${count.index}
+  value          = "TRACE"
+  category       = "terraform"
+  environment_id = data.scalr_environment.data_env.id
+}
+
+resource "scalr_variable" "var_newAll" {
+  key            = "keyall"
+  value          = "1"
+  category       = "shell"
+  environment_id = data.scalr_environment.data_env.id
+}
+
+
+
+
 variable "module_name" {
   description = "The name of the module"
   default = "test_module_name"
