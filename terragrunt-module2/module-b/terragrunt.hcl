@@ -5,8 +5,13 @@ include {
 terraform {
   source = "../../base/main.tf"
 }
+inputs = {
+  module_name = "module-a"
+  resource_id = "resource-001"
+}
 
-dependency "module-a" {
+
+/*dependency "module-a" {
   config_path = "../../terragrunt-module1/module-a"
   mock_outputs = {
     module_name = "module-b"
@@ -19,4 +24,4 @@ dependency "module-a" {
 inputs = {
   module_name = dependency.module-a.outputs.module_name
   resource_id = dependency.module-a.outputs.resource_id
-}
+}*/
