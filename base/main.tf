@@ -37,7 +37,8 @@ resource "scalr_variable" "var_newAll" {
     Name        = "ffff"
     Environment = "Dev"
   }*/
-}*/
+}
+*/
 
 
 
