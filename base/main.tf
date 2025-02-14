@@ -30,14 +30,14 @@ resource "scalr_variable" "var_newAll" {
   environment_id = data.scalr_environment.data_env.id
 }*/
 
-resource "aws_s3_bucket" "dana1" {
+/*resource "aws_s3_bucket" "dana1" {
   bucket = "bucket1"
 
    /*tags = {
     Name        = "ffff"
     Environment = "Dev"
   }*/
-}
+}*/
 
 
 
