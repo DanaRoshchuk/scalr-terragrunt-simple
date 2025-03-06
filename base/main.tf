@@ -69,7 +69,7 @@ resource "null_resource" "random_sleep_example_shuf" {
 
 
 resource "null_resource" "placeholder" {
-  count = 3
+  count = 1
   triggers = {
     module_name     = var.module_name
     resource_id     = var.resource_id
@@ -82,7 +82,7 @@ resource "null_resource" "placeholder" {
 }
 
 resource "random_string" "example" {
-  count = 2 
+  count = 1
   length  = 16
   special = false
   upper   = true
