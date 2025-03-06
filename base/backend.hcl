@@ -11,8 +11,8 @@ generate "backend" {
   contents = <<EOF
 terraform {
   backend "s3" {
-    bucket         = "ape-terraform-state-bucket"
-    key            = "state/${local.environment}/${path_relative_to_include()}/terraform.tfstate"
+    bucket         = "dana-terraform-state-bucket"
+    key            = "state/terragrunt-single/module1-2/terraform.tfstatee"
     region         = "us-east-1"
     encrypt        = true
     dynamodb_table = "terraform-locks"
