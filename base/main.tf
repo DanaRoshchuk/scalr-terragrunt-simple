@@ -52,14 +52,14 @@ variable "dependency_info" {
   default     = null
 }
 
-resource "null_resource" "random_sleep_example_shuf" {
+/*resource "null_resource" "random_sleep_example_shuf" {
   triggers = {
     force_recreation = timestamp()
   }
   provisioner "local-exec" {
     command = "sleep $(shuf -i 1-20 -n 1)"
   }
-}
+}*/
 
 #resource "null_resource" "show_env" {
 #  provisioner "local-exec" {
@@ -68,7 +68,7 @@ resource "null_resource" "random_sleep_example_shuf" {
 #}
 
 
-resource "null_resource" "placeholder" {
+/*resource "null_resource" "placeholder" {
   count = 1
   triggers = {
     module_name     = var.module_name
@@ -79,7 +79,7 @@ resource "null_resource" "placeholder" {
   provisioner "local-exec" {
     command = "echo ${var.module_name} resource created with dependency info: ${jsonencode(var.dependency_info)}"
   }
-}
+}*/
 
 resource "random_string" "example" {
   count = 1
