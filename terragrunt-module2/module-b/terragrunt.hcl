@@ -11,7 +11,7 @@ inputs = {
 }
 
 
-dependency "module-a" {
+/*dependency "module-a" {
   config_path = "../../terragrunt-module1/module-a"
   mock_outputs = {
     module_name = "module-b"
@@ -21,7 +21,8 @@ dependency "module-a" {
   mock_outputs_allowed_terraform_commands = ["validate", "plan", "init"]
 }
 
-inputs1 = {
+inputs = {
   module_name = dependency.module-a.outputs.module_name
   resource_id = dependency.module-a.outputs.resource_id
 }
+*/
