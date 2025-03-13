@@ -81,14 +81,14 @@ resource "null_resource" "placeholder" {
   }
 }
 
-resource "random_string" "example" {
+/*resource "random_string" "example" {
   count = 1
   length  = 16
   special = false
   upper   = true
   lower   = true
   numeric  = true
-}
+}*/
 
 output "resource_output" {
   value = {
