@@ -68,7 +68,7 @@ variable "dependency_info" {
 #}
 
 
-/*resource "null_resource" "placeholder" {
+resource "null_resource" "placeholder" {
   count = 1
   triggers = {
     module_name     = var.module_name
@@ -79,7 +79,7 @@ variable "dependency_info" {
   provisioner "local-exec" {
     command = "echo ${var.module_name} resource created with dependency info: ${jsonencode(var.dependency_info)}"
   }
-}*/
+}
 
 resource "random_string" "example" {
   count = 1
