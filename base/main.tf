@@ -83,11 +83,11 @@ resource "null_resource" "placeholder" {
 
 resource "random_string" "example" {
   count = 1
-  length  = 16
+  length  = 15
   special = false
   upper   = true
   lower   = true
-  numeric  = true
+  numeric  = false
 }
 
 output "resource_output" {
