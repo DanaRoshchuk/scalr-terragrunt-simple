@@ -42,8 +42,13 @@ variable "module_name" {
 variable "resource_id" {
   description = "A unique identifier for the resource"
   type        = string
-  sensitive = true
   default = "test_resource_id"
+}
+variable "sensitive_var_module-w" {
+  description = "A unique identifier for the resource"
+  type        = string
+  sensitive = true
+  default = "test_sensitive_var"
 }
 
 variable "dependency_info" {
