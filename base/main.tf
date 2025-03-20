@@ -47,7 +47,7 @@ variable "resource_id" {
 variable "sensitive_var_module-w" {
   description = "A unique identifier for the resource"
   type        = string
-  sensitive = false
+  sensitive = true
   default = "test_sensitive_var"
 }
 
