@@ -42,6 +42,7 @@ variable "module_name" {
 variable "resource_id" {
   description = "A unique identifier for the resource"
   type        = string
+  sensitive = true
   default = "test_resource_id"
 }
 
