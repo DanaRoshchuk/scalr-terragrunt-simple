@@ -89,10 +89,10 @@ resource "null_resource" "placeholder" {
 
 resource "random_string" "example" {
   count = 1
-  length  = 15
+  length  = 10
   special = false
   upper   = true
-  lower   = true
+  lower   = false
   numeric  = false
 }
 
