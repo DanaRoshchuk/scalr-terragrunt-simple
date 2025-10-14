@@ -1,4 +1,4 @@
-terraform {
+/*terraform {
   source = "../../base/main.tf"
 }
 
@@ -12,3 +12,4 @@ inputs = {
   resource_id = "resource-003"
   sensitive_var_module-w = "Qwerty!23456789"
 }
+*/
