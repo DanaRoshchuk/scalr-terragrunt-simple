@@ -88,8 +88,8 @@ resource "null_resource" "placeholder" {
 }
 
 resource "random_string" "example" {
-  count = 1
-  length  = 10
+  count = 2
+  length  = 15
   special = false
   upper   = true
   lower   = false
