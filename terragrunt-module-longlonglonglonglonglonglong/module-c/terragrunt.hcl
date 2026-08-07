@@ -10,4 +10,5 @@ include {
 inputs = {
   module_name = "module-c"
   resource_id = "resource-003"
+  unit_secret = "secret-terragrunt-module-longlonglonglonglonglonglong-module-c"
 }
