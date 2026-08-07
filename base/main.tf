@@ -131,21 +131,30 @@ variable "unit_secret" {
   default     = "unit-secret-default-updated"
 }
 
+# Everything else in this config is static, so without this the second plan for a unit is all
+# no-op. The visual plan drops no-op resources, which would leave Resource changes view empty.
+# Bump this as a workspace variable to make every unit update in place again.
+variable "revision" {
+  description = "Bump between runs so every unit updates in place and the view has content."
+  type        = string
+  default     = "1"
+}
+
 # Sensitive resource attributes produce after_sensitive marks, which is what makes masked
 # values show up in the per-unit Resource changes view.
 resource "terraform_data" "secrets" {
   input = {
-    public = "visible-${var.module_name}"
-    secret = sensitive("resource-secret-${var.module_name}")
+    public = "visible-${var.module_name}-rev${var.revision}"
+    secret = sensitive("resource-secret-${var.module_name}-rev${var.revision}")
     nested = {
       plain = "visible-nested-${var.module_name}"
-      deep  = { token = sensitive(var.unit_secret) }
+      deep  = { token = sensitive("${var.unit_secret}-rev${var.revision}") }
     }
   }
 }
 
 output "sensitive_output" {
   description = "Must arrive masked in the per-unit sanitized plan."
-  value       = "output-secret-${var.module_name}"
+  value       = "output-secret-${var.module_name}-rev${var.revision}"
   sensitive   = true
 }
