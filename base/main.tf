@@ -128,7 +128,7 @@ variable "unit_secret" {
   description = "Sensitive, set per unit so masked values differ between units."
   type        = string
   sensitive   = true
-  default     = "unit-secret-default"
+  default     = "unit-secret-default-updated"
 }
 
 # Sensitive resource attributes produce after_sensitive marks, which is what makes masked
