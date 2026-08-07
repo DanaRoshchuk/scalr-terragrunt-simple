@@ -2,7 +2,7 @@ terraform {
   source = "../../base/main.tf"
 }
 
-include {
+include "root" {
   path = find_in_parent_folders("../base/backend.hcl")
 }
 
