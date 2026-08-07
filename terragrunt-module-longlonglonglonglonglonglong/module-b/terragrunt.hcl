@@ -1,4 +1,4 @@
-include {
+include "root" {
     path = find_in_parent_folders("base/backend.hcl")
 }
 
@@ -9,4 +9,5 @@ terraform {
 inputs = {
   module_name = "module-b"
   resource_id = "resource-002"
+  unit_secret = "secret-terragrunt-module-longlonglonglonglonglonglong-module-b"
 }

@@ -112,3 +112,49 @@ output "resource_id" {
   description = "A unique identifier for the resource"
   value = random_string.example[0].result
 }
+
+# ---------------------------------------------------------------------------------------
+# Sensitive values for plan-sanitizer testing (SCALRCORE-37162).
+#
+# Everything below is derived from var.module_name / var.unit_secret, so each Terragrunt unit
+# produces its own distinct masked values and units can be told apart in the sanitized output.
+#
+# Values must be known at plan time to be visible as masked in Resource changes view. That rules
+# out computed attributes such as random_password.result, which are null in the plan and so have
+# nothing to mask. terraform_data with sensitive() keeps the values known. Requires Terraform 1.4+.
+# ---------------------------------------------------------------------------------------
+
+variable "unit_secret" {
+  description = "Sensitive, set per unit so masked values differ between units."
+  type        = string
+  sensitive   = true
+  default     = "unit-secret-default-updated"
+}
+
+# Everything else in this config is static, so without this the second plan for a unit is all
+# no-op. The visual plan drops no-op resources, which would leave Resource changes view empty.
+# Bump this as a workspace variable to make every unit update in place again.
+variable "revision" {
+  description = "Bump between runs so every unit updates in place and the view has content."
+  type        = string
+  default     = "1"
+}
+
+# Sensitive resource attributes produce after_sensitive marks, which is what makes masked
+# values show up in the per-unit Resource changes view.
+resource "terraform_data" "secrets" {
+  input = {
+    public = "visible-${var.module_name}-rev${var.revision}"
+    secret = sensitive("resource-secret-${var.module_name}-rev${var.revision}")
+    nested = {
+      plain = "visible-nested-${var.module_name}"
+      deep  = { token = sensitive("${var.unit_secret}-rev${var.revision}") }
+    }
+  }
+}
+
+output "sensitive_output" {
+  description = "Must arrive masked in the per-unit sanitized plan."
+  value       = "output-secret-${var.module_name}-rev${var.revision}"
+  sensitive   = true
+}
